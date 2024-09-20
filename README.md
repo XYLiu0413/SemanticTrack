@@ -1,15 +1,42 @@
-## SemanticTrack
-A semantic fusion method for radar point cloud ghost suppression
+# SemanticTrack
+SemanticTrack is a novel target clustering and track management method which integrates semantic information from radar point cloud. we fully exploit point cloud semantic features and train ghost targets as a distinct class for the first time. Due to the lack of annotations for ghost targets in existing open-source radar point cloud datasets, we collect a dedicated dataset to conduct experiments. The results demonstrate that our method achieves state-of-the-art performance compared to other methods in terms of object tracking accuracy and ghost suppression effectiveness.
 
-### Code
-- **main.py**: The main script to run the entire pipeline of our proposed method.
+## Table of Contents
+- [Introduction](#introduction)
+- [Code Overview](#code-overview)
+- [Experimental Details](#experimental-details)
+- [Results](#results)
+- [Data Availability](#data-availability)
+- [License](#license)
+
+## Introduction
+SemanticTrack addresses the challenge of ghost in radar point clouds by integrating semantic information into the ghost suppression process. Our method enhances radar-based perception systems by utilizing semantic fusion techniques to improve both object detection and tracking accuracy in complex environments.
+
+## Code Overview
+
+This repository contains the following key components:
+
+- **main.py**: The main script that runs the entire pipeline of our proposed semantic fusion method.
 - **SemanticSceneRestriction.py**: Semantic Scene Restriction.
-- **Pointnet2.py**: the Overall Semantic Segmentation model.
-- **MOT.py**:  MOT and Track Management.
-  
-### Experimental Details
-- **docs/ImplementationDetails.pdf**: This PDF document provides a comprehensive details of the implementation steps and specifics of our method as described in our paper. 
+- **Pointnet2.py**: Overall Semantic Segmentation model.
+- **MOT.py**: MOT and Frack Management.
 
-### Results
+## Experimental Details
+
+Detailed implementation steps and specifics of our method can be found in the following document:
+
+- **[docs/ImplementationDetails.pdf](docs/ImplementationDetails.pdf)**: This PDF outlines the comprehensive details of the implementation, including architecture design, data preprocessing, and training strategies.
+
+## Results
+
+Below are the qualitative results showcasing the effectiveness of our method in comparison to baseline methods. The legend at the bottom of the image applies only to the results of our method (last row).
+
 ![Qualitative Results](docs/results.png)
-Qualitative results of our method and the baselines. Note: The legend at the bottom of the image only applies to the results of our method (last line).
+
+## Data Availability
+
+Currently, the data used in this project is subject to restrictions related to the collection site. As such, we are unable to release the dataset at this time. We are in the process of obtaining permission from the experimental site provider, and once the necessary approvals are granted, we will release the dataset as open source. 
+
+## License
+
+This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for more details.
