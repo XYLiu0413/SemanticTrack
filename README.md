@@ -7,7 +7,6 @@ SemanticTrack is a novel target clustering and track management method which int
 - [Experimental Details](#experimental-details)
 - [Results](#results)
 - [Data Availability](#data-availability)
-- [License](#license)
 
 ## Introduction
 SemanticTrack addresses the challenge of ghost in radar point clouds by integrating semantic information into the ghost suppression process. Our method enhances radar-based perception systems by utilizing semantic fusion techniques to improve both object detection and tracking accuracy in complex environments.
@@ -37,6 +36,4 @@ Below are the qualitative results showcasing the effectiveness of our method in 
 
 Currently, the data used in this project is subject to restrictions related to the collection site. As such, we are unable to release the dataset at this time. We are in the process of obtaining permission from the experimental site provider, and once the necessary approvals are granted, we will release the dataset as open source. 
 
-## License
 
-This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for more details.
