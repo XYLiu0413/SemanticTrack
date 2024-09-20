@@ -25,7 +25,7 @@ This repository contains the following key components:
 
 Detailed implementation steps and specifics of our method can be found in the following document:
 
-- **[docs/ImplementationDetails.pdf](docs/ImplementationDetails.pdf)**: This PDF outlines the comprehensive details of the implementation, including architecture design, data preprocessing, and training strategies.
+- **[docs/ImplementationDetails.pdf](docs/ImplementationDetails.pdf)**: This PDF outlines the comprehensive details of the experimental facilities.
 
 ## Results
 
