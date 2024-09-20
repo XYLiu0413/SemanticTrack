@@ -6,6 +6,7 @@ SemanticTrack is a novel target clustering and track management method which int
 - [Code Overview](#code-overview)
 - [Experimental Details](#experimental-details)
 - [Results](#results)
+- [Installation](#installation)
 - [Data Availability](#data-availability)
 
 ## Introduction
@@ -31,6 +32,13 @@ Detailed implementation steps and specifics of our method can be found in the fo
 Below are the qualitative results showcasing the effectiveness of our method in comparison to baseline methods. The legend at the bottom of the image applies only to the results of our method (last row).
 
 ![Qualitative Results](docs/results.png)
+
+## Installation
+
+Create a new Conda environment using the provided `environment.yaml` file:
+
+```bash
+conda env create -f environment.yaml
 
 ## Data Availability
 
