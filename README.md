@@ -1,5 +1,5 @@
-# SemanticTrack
-SemanticTrack is a novel target clustering and track management method which integrates semantic information from radar point cloud. we fully exploit point cloud semantic features and train ghost targets as a distinct class for the first time. Due to the lack of annotations for ghost targets in existing open-source radar point cloud datasets, we collect a dedicated dataset to conduct experiments. The results demonstrate that our method achieves state-of-the-art performance compared to other methods in terms of object tracking accuracy and ghost suppression effectiveness.
+# SemanticTrack: A Semantic Fusion Method for Radar Point Cloud Ghost Suppression
+
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -10,7 +10,7 @@ SemanticTrack is a novel target clustering and track management method which int
 - [Data Availability](#data-availability)
 
 ## Introduction
-SemanticTrack addresses the challenge of ghost in radar point clouds by integrating semantic information into the ghost suppression process. Our method enhances radar-based perception systems by utilizing semantic fusion techniques to improve both object detection and tracking accuracy in complex environments.
+SemanticTrack is a novel target clustering and track management method which integrates semantic information from radar point cloud. We fully exploit point cloud semantic features and train ghost targets as a distinct class for the first time. Due to the lack of annotations for ghost targets in existing open-source radar point cloud datasets, we collect a dedicated dataset to conduct experiments. The results demonstrate that our method achieves state-of-the-art performance compared to other methods in terms of object tracking accuracy and ghost suppression effectiveness. SemanticTrack addresses the challenge of ghost in radar point clouds by integrating semantic information into the ghost suppression process. Our method enhances radar-based perception systems by utilizing semantic fusion techniques to improve both object detection and tracking accuracy in complex environments.
 
 ## Code Overview
 
