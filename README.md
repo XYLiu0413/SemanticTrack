@@ -12,7 +12,8 @@
 ## Introduction
 SemanticTrack is a novel target clustering and track management method that integrates semantic information from radar point clouds. We are the first to fully exploit these features by training ghost targets as a distinct class. Due to the lack of ghost target annotations in existing open-source datasets, we collected a dedicated dataset for our experiments. Results show that our method improves radar-based perception systems, enhancing tracking and ghost suppression in complex environments.
 
-## Code Overview
+## Method Overview
+![The system pipeline](docs/pipeline.png)
 
 Due to [Data Availability](#data-availability), we are currently only open-sourcing the method's code. 
 This repository contains the following key components:
@@ -20,7 +21,7 @@ This repository contains the following key components:
 - **main.py**: The main script that runs the entire pipeline of our proposed semantic fusion method.
 - **SemanticSceneRestriction.py**: Semantic Scene Restriction. Fully utilize the spatial and semantic information provided by radar to form target point cloud groups.
 - **Pointnet2.py**: Overall Semantic Segmentation model. Infer the semantic labels of the target point cloud groups.
-- **MOT.py**: MOT and Fusion Management. Target identification and ghost suppression are made according to the semantic labels and life cycles of all tracks.
+- **MOT.py**: Track Management. Target identification and ghost suppression are made according to the semantic labels and life cycles of all tracks.
 
 ## Experimental Details
 
