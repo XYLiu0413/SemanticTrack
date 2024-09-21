@@ -13,6 +13,7 @@
 SemanticTrack is a novel target clustering and track management method that integrates semantic information from radar point clouds. We are the first to fully exploit these features by training ghost targets as a distinct class. Due to the lack of ghost target annotations in existing open-source datasets, we collected a dedicated dataset for our experiments. Results show that our method improves radar-based perception systems, enhancing tracking and ghost suppression in complex environments.
 
 ## Method Overview
+
 ![The system pipeline](docs/pipeline.png)
 
 Due to [Data Availability](#data-availability), we are currently only open-sourcing the method's code. 
