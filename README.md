@@ -27,16 +27,15 @@ This repository contains the following key components:
 - **[docs/ImplementationDetails.pdf](docs/ImplementationDetails.pdf)**: This PDF outlines the comprehensive details of the experimental facilities.
 
 ## Results
-
-Below are the qualitative results showcasing the effectiveness of our method in comparison to baseline methods. The legend at the bottom of the image applies only to the results of our method (last row).
+Below are the results of qualitative comparison between our approach and the baselines in three representative scenes.The legend at the bottom of the image applies only to the results of our method (last row).
 
 ![Qualitative Results](docs/results.png)
 
-Below are the quantitative results.
+Below are the quantitative results across all scenes in the self-collected dataset。
 
 ![Quantitative Results](docs/QuantitativeResults.png)
 
-NOTE：We currently are sorting out the code of all baselines, and will gradually upload it in the future.
+NOTE：We currently are sorting out the code of the baselines, and will gradually upload it in the future.
 ## Environment
 
 Create a new Conda environment using the provided `environment.yaml` file:
