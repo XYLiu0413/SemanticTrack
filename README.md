@@ -26,7 +26,7 @@ This repository contains the following key components:
 
 ## Experimental Details
 
-- **[docs/ImplementationDetails.pdf](docs/ImplementationDetails.pdf)**: This PDF outlines the comprehensive details of the experimental facilities.
+- **[docs/ImplementationDetails.pdf](docs/ImplementationDetails.pdf)**: This PDF outlines the comprehensive use details of the experimental facilities.
 
 ## Results
 Below are the results of qualitative comparison between our approach and the baselines in three representative scenes.The legend at the bottom of the image applies only to the results of our method (last row).
