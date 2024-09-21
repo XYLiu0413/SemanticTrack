@@ -3,14 +3,23 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
+- [Environment](#Environment)
 - [Code Overview](#code-overview)
 - [Experimental Details](#experimental-details)
 - [Results](#results)
-- [Environment](#Environment)
 - [Data Availability](#data-availability)
 
 ## Introduction
 SemanticTrack is a novel target clustering and track management method that integrates semantic information from radar point clouds. We are the first to fully exploit these features by training ghost targets as a distinct class. Due to the lack of ghost target annotations in existing open-source datasets, we collected a dedicated dataset for our experiments. Results show that our method improves radar-based perception systems, enhancing tracking and ghost suppression in complex environments.
+
+## Environment
+
+Create a new conda environment using the provided `environment.yaml` file:
+
+```bash
+conda env create -f environment.yaml
+```
+This will setup a conda environment named **SemanticTrack** with Python 3.8, PyTorch 2.3.0.
 
 ## Method Overview
 
@@ -38,14 +47,7 @@ Below are the quantitative results across all scenes in the self-collected datas
 ![Quantitative Results](docs/QuantitativeResults.png)
 
 NOTE：We currently are sorting out the code of the baselines, and will gradually upload it in the future.
-## Environment
 
-Create a new conda environment using the provided `environment.yaml` file:
-
-```bash
-conda env create -f environment.yaml
-```
-This will setup a conda environment named **SemanticTrack** with Python 3.8, PyTorch 2.3.0.
 
 ## Data Availability
 
