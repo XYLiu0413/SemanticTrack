@@ -38,11 +38,12 @@ Below are the quantitative results across all scenes in the self-collected datas
 NOTE：We currently are sorting out the code of the baselines, and will gradually upload it in the future.
 ## Environment
 
-Create a new Conda environment using the provided `environment.yaml` file:
+Create a new conda environment using the provided `environment.yaml` file:
 
 ```bash
 conda env create -f environment.yaml
 ```
+This will setup a conda environment named SemanticTrack with Python 3.8, PyTorch 2.3.0.
 
 ## Data Availability
 
