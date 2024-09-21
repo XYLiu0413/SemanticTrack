@@ -31,7 +31,7 @@ Below are the results of qualitative comparison between our approach and the bas
 
 ![Qualitative Results](docs/results.png)
 
-Below are the quantitative results across all scenes in the self-collected dataset。
+Below are the quantitative results across all scenes in the self-collected dataset.
 
 ![Quantitative Results](docs/QuantitativeResults.png)
 
