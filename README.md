@@ -14,7 +14,8 @@ SemanticTrack is a novel target clustering and track management method that inte
 
 ## Code Overview
 
-Due to [Data Availability](#data-availability), we are currently only open-sourcing the method's code. This repository contains the following key components:
+Due to [Data Availability](#data-availability), we are currently only open-sourcing the method's code. 
+This repository contains the following key components:
 
 - **main.py**: The main script that runs the entire pipeline of our proposed semantic fusion method.
 - **SemanticSceneRestriction.py**: Semantic Scene Restriction. Fully utilize the spatial and semantic information provided by radar to form target point cloud groups.
@@ -31,6 +32,11 @@ Below are the qualitative results showcasing the effectiveness of our method in 
 
 ![Qualitative Results](docs/results.png)
 
+Below are the quantitative results.
+
+![Quantitative Results](docs/QuantitativeResults.png)
+
+NOTE：We currently are sorting out the code of all baselines, and will gradually upload it in the future.
 ## Environment
 
 Create a new Conda environment using the provided `environment.yaml` file:
