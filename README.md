@@ -17,9 +17,9 @@ SemanticTrack addresses the challenge of ghost in radar point clouds by integrat
 This repository contains the following key components:
 
 - **main.py**: The main script that runs the entire pipeline of our proposed semantic fusion method.
-- **SemanticSceneRestriction.py**: Semantic Scene Restriction.
-- **Pointnet2.py**: Overall Semantic Segmentation model.
-- **MOT.py**: MOT and Frack Management.
+- **SemanticSceneRestriction.py**: Semantic Scene Restriction. Fully utilize the spatial and semantic information provided by radar to form target point cloud groups.
+- **Pointnet2.py**: Overall Semantic Segmentation model. infer the semantic labels of the target point cloud groups.
+- **MOT.py**: MOT and Fusion Management. Target identification and ghost suppression are made according to the semantic labels and life cycles of all tracks.
 
 ## Experimental Details
 
