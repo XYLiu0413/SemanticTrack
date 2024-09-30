@@ -11,27 +11,21 @@ from utils.common import load_json_GroundTruth, load_json_scene_names, save_noLa
 
 def frame_overlay(path):
     """
-    将每组五帧连续帧组合成一个数据集。
-
-    参数:
-    path (str): 包含雷达数据的 .mat 文件路径。
-
-    返回:
-    tuple: 包含以下内容的元组：
-        - data_5d (list of np.ndarray): 每个元素是一个 numpy 数组，合并了五帧数据。
-        - filename (str): 输入 .mat 文件的基本文件名。
+    Superimposed five-frame
+    
+    path (str): radar data
     """
     filename = os.path.splitext(os.path.basename(path))[0]
     data = sio.loadmat(path)
-    xyz_all = data['xyz_all'][0]  # 假设 xyz_all 是 MATLAB 中的一维单元数组
+    xyz_all = data['xyz_all'][0] 
     if len(xyz_all) > 5:
         data_5d = []
         for i in range(0, len(xyz_all) - len(xyz_all) % 5, 5):
             xyzv = np.vstack([xyz_all[i], xyz_all[i + 1], xyz_all[i + 2], xyz_all[i + 3], xyz_all[i + 4]])
-            selected_columns = np.hstack((xyzv[:, :4], 10 * np.log10(xyzv[:, 5:6])))  # 提取第1-4列和第6列,并且第六列取db为单位
+            selected_columns = np.hstack((xyzv[:, :4], 10 * np.log10(xyzv[:, 5:6])))  # extract x, y, z, v, rcs.
             data_5d.append(selected_columns)
     else:
-        raise ValueError('点云帧数小于5，无法进行叠加！')
+        raise ValueError('Point cloud frame number is less than 5, can not be stacked!')
     # df=pd.DataFrame(data_5d,colunms=['x', 'y', 'z', 'v', 'RCS'])
     return data_5d, filename
 
@@ -51,7 +45,7 @@ def spatial_cluster(data_5d, filename=None):
             labels = clustering.labels_[clustering.core_sample_indices_]
             groups = {}
             for label in np.unique(labels):
-                # 使用核心样本索引和标签索引筛选属于同一标签的数据
+                
                 tmp = X[clustering.core_sample_indices_]
                 group_indices = tmp[labels == label]
                 if len(group_indices) > 15:
@@ -82,9 +76,9 @@ def KDE(data_5d_DBSCAN, semantic_features=None, filename=None):
                 v_p_data = groups[key][:, [3, 4]]
             noise = 0.0001 * np.random.normal(size=v_p_data.shape)
             v_p_data = v_p_data + noise
-            # 计算原始数据的核密度估计
+           
             original_kde = gaussian_kde(v_p_data.T)
-            # 计算核密度估计和每个数据点的密度
+            
             densities = original_kde(v_p_data.T)
             density_threshold = np.percentile(densities, 25)
             filtered_data = groups[key][densities > density_threshold]
