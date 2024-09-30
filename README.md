@@ -25,7 +25,7 @@ This will setup a conda environment named **SemanticTrack** with Python 3.8, PyT
 
 ![The system pipeline](docs/pipeline.png)
 
-Due to [Data Availability](#data-availability), we are currently only open-sourcing the method's code. 
+Due to [Data Availability](#data-availability) and AB3DMOT's repository license, we are currently only open-sourcing our method's code.
 This repository contains the following key components:
 
 - **main.py**: The main script that runs the entire pipeline of our proposed semantic fusion method.
@@ -42,11 +42,10 @@ Below are the results of qualitative comparison between our approach and the bas
 
 ![Qualitative Results](docs/results.png)
 
-Below are the quantitative results across all scenes in the self-collected dataset.
+Below are the quantitative results of our method compared with the baselines across all scenes. Additionally, we have separately listed the results of three representative scenes.
 
 ![Quantitative Results](docs/QuantitativeResults.png)
 
-NOTE：We currently are sorting out the code of the baselines, and will gradually upload it in the future.
 
 
 ## Data Availability
