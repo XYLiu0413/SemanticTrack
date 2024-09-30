@@ -18,8 +18,8 @@ def model_cv(dt=0.5):
     # model["scale_bins"] = np.array([1.0 / delta_r, 1.0 / delta_v])
 
     # Obervation matrix
-    # 这里设置任何值都可，因为没有意义。H矩阵在更新步骤会根据先验状态s变换。
-    # 这里设置H仅为规范定义该CV模型的函数
+    # Any value can be set here, because there is no meaning. The H matrix is transformed according to the prior state s in the update step.
+    # Set H here to only define the functions of the CV model for the specification
     model["H"] = np.eye(3,4)
 
     #Process noise covariance matrix
@@ -28,7 +28,7 @@ def model_cv(dt=0.5):
               [0,   dt**3/3, 0, dt**2/2],
               [dt**2/2, 0,      dt,   0],
               [0,   dt**2/2,     0,  dt]])
-    model["Q"] =np.dot(q,Q)  #矩阵相乘用dot，*代表每个数值对应相乘
+    model["Q"] =np.dot(q,Q)  
 
     # observation noise matrix
     sigema_x=0.06   #range resolution：0.06m
@@ -44,7 +44,7 @@ class EKF(object):
     EKF class，包括 predict and update
     """
     def __init__(self, model, s0=np.array([0, 0, 1, 1]), P0=np.eye(4)):
-        self.s = s0              #无需专门设至为列向量，矩阵乘法的条件由dot函数自动调整满足
+        self.s = s0              =
         #self.u = np.zeros((3,1)) #observations vector
         self.P = P0
         self.P_history=[P0]
@@ -56,7 +56,7 @@ class EKF(object):
 
     def ekf_predict(self):
         # Prior state estimate
-        self.s_apr = np.dot(self.A, self.s) #dot(或@)会自动将s转换为列向量与A进行矩阵乘法，但得出的结果s_apr仍为array形式的横向量。
+        self.s_apr = np.dot(self.A, self.s) 
         # Prior error covariance estimate
         self.P_apr = np.dot(np.dot(self.A,self.P),self.A.T)  + self.Q
 
@@ -65,9 +65,9 @@ class EKF(object):
         Must be executed before the ekf_update
         """
 
-        # Update J_H matrix(雅可比矩阵) at first
+        # Update J_H matrix(jacobian matrix) at first
         # it will be used in calculating Kalman Gain
-        # It will be used in Gating Function(在Update之前执行)
+        # It will be used in Gating Function(before Update step)
         if self.s_apr[0] == 0 and self.s_apr[1] == 0:
             print("error!")
         else:
@@ -78,16 +78,16 @@ class EKF(object):
             self.H[2][2] = self.s_apr[0] / fenmu
             self.H[2][3] = self.s_apr[1] / fenmu
         # Compute innovation covariance
-        self.C = self.H @ self.P_apr @ self.H.T + self.R  # @表示矩阵相乘
+        self.C = self.H @ self.P_apr @ self.H.T + self.R 
         # 𝑯(S𝑎𝑝𝑟(𝑛)):  converts the predicted a-priori states 𝑠𝑎𝑝𝑟(𝑛) from state to observation
-        # It will be used in Gating Function(在Update之前执行)
+        # It will be used in Gating Function(before Update step)
         # So it's placed here, not in the ekf_update
         self.u_apr = np.array([self.s_apr[0], self.s_apr[1],
                             (self.s_apr[0] * self.s_apr[2] + self.s_apr[1] * self.s_apr[3]) / fenmu])
 
     def ekf_update(self, u):
         """
-        :param u:  observations vector，每帧的传感器测量量
+        :param u:  observations vector
         """
 
         # Kalman Gain
