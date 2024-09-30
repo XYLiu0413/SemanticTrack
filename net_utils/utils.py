@@ -16,13 +16,13 @@ def get_weight_path(semantic_features):
 
 def get_semantic_points(points, extension):
     if extension == '_v':
-        l0_points = points[:, :, 3].unsqueeze(-1)  # 选择第4个通道，并保持形状为 (B, N, 1)
+        l0_points = points[:, :, 3].unsqueeze(-1)  # Select the fourth channel and keep the shape (B, N, 1)
     elif extension == '_RCS':
-        l0_points = points[:, :, 4].unsqueeze(-1)  # 选择第5个通道，并保持形状为 (B, N, 1)
+        l0_points = points[:, :, 4].unsqueeze(-1)  # Select the 5th channel and keep the shape (B, N, 1)
     elif extension == '_xyz':
-        l0_points = None  # 如果扩展名为 '_xyz'，则不选择任何特征
+        l0_points = None  #
     else:
-        l0_points = points[:, :, 3:]  # 默认情况下，选择从第4个通道开始的所有特征
+        l0_points = points[:, :, 3:]  # default
     return l0_points
 
 
