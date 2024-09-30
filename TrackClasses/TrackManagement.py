@@ -28,7 +28,8 @@ class Track:
 
         :param track_id: identification of each track object starting from 1
         :param initial_point: The initial point of the trajectory
-        :param timestamp:# 从0开始
+        :param timestamp: Start at 0
+
         """
         self.track_id = track_id  # global track ID
         self.track_path = [s0]   # Initialize track path with the initial state
