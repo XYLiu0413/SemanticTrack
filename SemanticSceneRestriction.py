@@ -39,7 +39,7 @@ def spatial_cluster(data_5d, filename=None):
         # if i==29:
         moveID = (xyzvp[:, 2] >= -1) & (abs(xyzvp[:, 3]) > 0.1)
         X = xyzvp[moveID]
-        # DBSCAN 聚类
+        # DBSCAN 
         if X.size > 0:
             clustering = DBSCAN(eps=0.5, min_samples=15).fit(X[:, :3])
             labels = clustering.labels_[clustering.core_sample_indices_]
