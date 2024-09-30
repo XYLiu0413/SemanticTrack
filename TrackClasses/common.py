@@ -22,10 +22,10 @@ def has_different_frequencies(labels):
     counter = Counter(labels)
     frequency_values = list(counter.values())
     if len(frequency_values) == 1 and frequency_values[0] > 1:
-        # 如果一个轨迹标签都为0，则需要返回真，对其进行判断
+        
         return True
     else:
-        # 如果所有元素的出现次数都相同，则返回 False，否则返回 True
+        
         return not all(frequency == frequency_values[0] for frequency in frequency_values)
 
 
