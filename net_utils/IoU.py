@@ -17,8 +17,8 @@ def calculate_accuracy(pred_mask, label_mask):
     return accuracy
 def integral_label(predictions):
     """
-    整合聚类群组的整体语义标签
-    :param predictions: 按行排列的输出标签形状为N*1的列表
+    Integrated semantic labels for clustering groups
+    :param predictions: A list of output labels in the shape N*1, arranged in rows
     """
     label_mapping = {'pedestrian': 0, 'vehicle': 1, 'ghost': 2}
     flattened_data = [item for sublist in predictions for item in sublist]
@@ -51,7 +51,7 @@ def integral_compute_metrics(predictions, labels, seg_classes):
         # Update confusion matrix
         for i in range(len(seg_classes['Scenes'])):
             confusion_matrix[i][class_id] = np.sum(np.logical_and(predictions == class_id, labels == i))
-            # 模糊矩阵每个元素为 满足两个条件的布尔类型矩阵中的True的个数求和.
+            
         pred_mask_temp = np.concatenate((pred_mask_temp, pred_mask), axis=0)
         label_mask_temp = np.concatenate((label_mask_temp, label_mask), axis=0)
     total_iou = calculate_iou(pred_mask_temp, label_mask_temp)
@@ -85,10 +85,7 @@ def integral_compute_metrics(predictions, labels, seg_classes):
                 xticklabels=['pedestrian', 'vehicle', 'ghost'],
                 yticklabels=['pedestrian', 'vehicle', 'ghost']) ##, fmt=".1f%"
 
-    # # 手动添加百分比符号
-    # for i in range(confusion_matrix.shape[0]):
-    #     for j in range(confusion_matrix.shape[1]):
-    #         plt.text(j + 0.5, i + 0.5, f"{confusion_matrix[i, j]:.1f}%", ha='center', va='center')
+
 
     plt.xlabel('Predicted Label')
     plt.ylabel('True Label')
@@ -133,7 +130,7 @@ def compute_metrics(predictions, labels, seg_classes):
         # Update confusion matrix
         for i in range(len(seg_classes['Scenes'])):
             confusion_matrix[i][class_id] = np.sum(np.logical_and(predictions == class_id, labels == i))
-            #模糊矩阵每个元素为 满足两个条件的布尔类型矩阵中的True的个数求和.
+           
         pred_mask_temp = np.concatenate((pred_mask_temp, pred_mask), axis=0)
         label_mask_temp = np.concatenate((label_mask_temp, label_mask), axis=0)
         if class_id < 2:
@@ -183,7 +180,7 @@ def plot_confusion_matrix(confusion_matrix, class_names,savepath,if_save):
     if if_save:
         directory, filename = os.path.split(savepath)
         filename_without_ext = os.path.splitext(filename)[0]
-        # 保存图片到指定路径，同名文件加png扩展名
+        
         new_file_path = os.path.join(directory, f"{filename_without_ext}.png")
         plt.savefig(new_file_path)
 
