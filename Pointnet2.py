@@ -44,13 +44,13 @@ class PointCloudData(Dataset):
 
     @staticmethod
     def load_from_pkl(file_paths, num_points=1, split_ratio=0.8):
-        # 初始化两个列表来存储点和标签
+
         points_list = []
         labels_list = []
         current_points = []
         current_labels = []
         label_mapping = {'pedestrian': 0, 'vehicle': 1, 'ghost': 2}
-        # 遍历所有文件路径并加载数据
+
         for file_path in file_paths:
             with open(file_path, 'rb') as f:
                 data = pickle.load(f)
@@ -64,7 +64,7 @@ class PointCloudData(Dataset):
                     current_points = []
                     current_labels = []
 
-        # 将数据分为训练集和验证集
+        # The data is divided into training sets and validation sets
         dataset_size = len(points_list)
         indices = list(range(dataset_size))
         np.random.shuffle(indices)
@@ -273,7 +273,7 @@ class seg_loss(nn.Module):
 def evaluate_seg(dataset, checkpoint, batch_size, nclasses, dims, if_save=False):
     print('Loading..')
     test_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=False, num_workers=0)
-    model = pointnet2_seg_msg_radar(in_channels=dims, nclasses=nclasses)  # 三类标签
+    model = pointnet2_seg_msg_radar(in_channels=dims, nclasses=nclasses)  # 3 calsses
     model.load_state_dict(torch.load(checkpoint))
     model.eval()
     print('Loading {} completed'.format(checkpoint))
@@ -306,7 +306,7 @@ def integral(dataset, checkpoint, batch_size, nclasses, dims, extension=''):
     计算整体的语义标签
     """
     test_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=False, num_workers=0)
-    model = pointnet2_seg_msg_radar(in_channels=dims, nclasses=nclasses)  # 三类标签
+    model = pointnet2_seg_msg_radar(in_channels=dims, nclasses=nclasses)  
     model.load_state_dict(torch.load(checkpoint))
     model.eval()
     print('Loading {} completed'.format(checkpoint))
@@ -338,7 +338,7 @@ def prediction(semantic_features=None, withSRR=True):
     label_mapping = load_json_label_mapping()
     ground_truth_data = load_json_GroundTruth()
     if semantic_features is None:
-        semantic_features = ['v', 'RCS']  # 如果未指定特征，默认使用 ['v', 'RCS']
+        semantic_features = ['v', 'RCS']  
     in_channels, extension = get_in_channels_and_extension(semantic_features)
     if in_channels == 5:
         if withSRR:
@@ -364,7 +364,7 @@ def prediction(semantic_features=None, withSRR=True):
             SemanticClusters_frames.append(SemanticClusters)
 
         WithLabel_dir = 'InputData/WithLabel'
-        os.makedirs(WithLabel_dir, exist_ok=True)  # 创建目录如果不存在
+        os.makedirs(WithLabel_dir, exist_ok=True)  
         base_filename = f'LabelCluster_{scene_name}{extension}.pkl'
         file_path = get_available_filename(WithLabel_dir, base_filename)
         with open(file_path, 'wb') as file:
@@ -384,7 +384,7 @@ def prediction(semantic_features=None, withSRR=True):
             Centroids.append(centroid)
 
         WithLabel_dir = 'InputData/WithLabel'
-        os.makedirs(WithLabel_dir, exist_ok=True)  # 创建目录如果不存在
+        os.makedirs(WithLabel_dir, exist_ok=True) 
         base_filename = f'LabelCentroids_{scene_name}{extension}.pkl'
         file_path = get_available_filename(WithLabel_dir, base_filename)
         with open(file_path, 'wb') as file:
@@ -394,31 +394,26 @@ def prediction(semantic_features=None, withSRR=True):
 
 def train(semantic_features=None, n_classes=3):
     if semantic_features is None:
-        semantic_features = ['v', 'RCS']  # 如果未指定特征，默认使用 ['v', 'RCS']
+        semantic_features = ['v', 'RCS']  
     in_channels, extension = get_in_channels_and_extension(semantic_features)
-    # 加载数据集
-    # file_paths = ['DataSets/self/Single_vehicle.pkl', 'DataSets/self/Single_person_straight.pkl']
+    # load data
     file_paths = ['DataSets/self/dataset_all.pkl']
     train_dataset, val_dataset = PointCloudData.load_from_pkl(file_paths)
-    # 创建数据加载器
     dataloader = DataLoader(train_dataset, batch_size=1000, shuffle=True, num_workers=0)
-    # val_loader = DataLoader(val_dataset, batch_size=1000, shuffle=True, num_workers=0)
-    # 初始化模型
-    model = pointnet2_seg_msg_radar(in_channels=in_channels, nclasses=n_classes)  # 三类标签
+    model = pointnet2_seg_msg_radar(in_channels=in_channels, nclasses=n_classes)  # 
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=0.0001,  # lr (learning rate)：学习率决定了每次参数更新的步长大小。一个较小的学习率可能导致收敛速度慢，但更稳定。
+        lr=0.0001,  # lr (learning rate)
         betas=(0.9, 0.999),
-        # betas=(0.9, 0.999) 表示：beta1=0.9：用于计算梯度的指数移动平均的衰减率。它控制了动量项在更新中的影响。beta2=0.999：用于计算梯度平方的指数移动平均的衰减率。它控制了RMSProp风格更新的影响。这些值的选择会影响优化过程的动态平衡。
-        eps=1e-08,  # (epsilon)：eps 是为了防止在计算中除以零而加到分母中的一个非常小的数。在你的例子中，eps 设置为 1e-08。
-        weight_decay=1e-4  # weight_decay：权重衰减，也叫L2正则化，是为了防止模型过拟合，在每次更新时将权重向零衰减。
+        eps=1e-08,  
+        weight_decay=1e-4  
     )
     criterion = nn.CrossEntropyLoss()
     num_epochs = 50
     for epoch in range(num_epochs):
         for points, labels in dataloader:
-            points = points.float()  # 确保点云数据为浮点数类型
-            labels = labels.long()  # 确保标签为长整型
+            points = points.float()  
+            labels = labels.long()  
             optimizer.zero_grad()
             l0_xyz = points[:, :, :3]
             l0_points = get_semantic_points(points, extension)
@@ -429,7 +424,7 @@ def train(semantic_features=None, n_classes=3):
         print(f'Epoch {epoch}, Loss: {loss.item()}')  # , Validation Accuracy: {accuracy}%'
 
     weights_dir = 'weights'
-    os.makedirs(weights_dir, exist_ok=True)  # 创建目录如果不存在
+    os.makedirs(weights_dir, exist_ok=True)  
     base_filename = f'pointnet2_model{extension}.pth'
     file_path = get_available_filename(weights_dir, base_filename)
     torch.save(model.state_dict(), file_path)
