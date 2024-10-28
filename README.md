@@ -1,5 +1,4 @@
-# SemanticTrack: A Semantic Fusion Method for Radar Point Cloud Ghost Suppression
-
+# SemanticTrack —— Enhanced Radar Detection: Semantic Cluster and Track Management for Ghost Suppression
 
 ## Table of Contents
 - [Introduction](#introduction)
