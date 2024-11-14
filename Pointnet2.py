@@ -214,11 +214,11 @@ class PointNet_FP_Module(nn.Module):
 class pointnet2_seg_msg_radar(nn.Module):
     def __init__(self, in_channels, nclasses):
         super(pointnet2_seg_msg_radar, self).__init__()
-        self.pt_sa1 = PointNet_SA_Module_MSG(M=1, radiuses=[0.5, 0.5], Ks=[1, 1], in_channels=in_channels,
+        self.pt_sa1 = PointNet_SA_Module_MSG(M=512, radiuses=[0.5, 0.5], Ks=[15, 15], in_channels=in_channels,
                                              mlps=[[32, 32, 64], [64, 64, 128]])
-        self.pt_sa2 = PointNet_SA_Module_MSG(M=1, radiuses=[0.5, 0.5], Ks=[1, 1], in_channels=64 + 128 + 3,
+        self.pt_sa2 = PointNet_SA_Module_MSG(M=512, radiuses=[0.5, 0.5], Ks=[15, 15], in_channels=64 + 128 + 3,
                                              mlps=[[32, 32, 64], [64, 64, 128]])
-        self.pt_sa3 = PointNet_SA_Module_MSG(M=1, radiuses=[0.5, 0.5], Ks=[1, 1], in_channels=64 + 128 + 3,
+        self.pt_sa3 = PointNet_SA_Module_MSG(M=512, radiuses=[0.5, 0.5], Ks=[15, 15], in_channels=64 + 128 + 3,
                                              mlps=[[64, 64, 128], [64, 64, 128]])
 
         self.pt_fp1 = PointNet_FP_Module(in_channels=128 + 128 + 64 + 128, mlp=[256, 256], bn=True)
